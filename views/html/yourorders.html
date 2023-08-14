@@ -1,0 +1,122 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+    <title>orders</title>
+    <style>
+        .box{
+            position: relative;
+            left: 90px;
+            top: 50px;
+        }
+
+        .width{
+            width: 200px;
+            border: 2px solid rgb(33, 168, 201);
+            background-color: rgb(39, 93, 219);
+            padding: 2px;
+            border-radius: 1rem;
+        }
+
+        .orimg{
+            border: 2px solid rgb(33, 168, 201);
+            background-color: aqua;
+            padding: 2px;
+            border-radius: 1rem;
+        }
+
+        .height{
+            height: 150px;
+            text-align: center;
+        }
+        .header{
+            text-align: center;
+            text-transform: uppercase;
+            box-sizing: border-box;
+            font-family: 'Franklin Gothic Medium', 'Arial Narrow', Arial, sans-serif;
+        }
+        .container{
+            background-color: rgb(255, 255, 255);
+            text-align: center;
+            text-transform: uppercase;
+            font-family: 'Franklin Gothic Medium', 'Arial Narrow', Arial, sans-serif;
+
+        }
+        .gotohome{
+            font-size: 30px;
+            border-radius: 2rem;
+        }
+    </style>
+</head>
+<body>
+    <div>
+        <a href="http://localhost:5000/customer/home" class="gotohome"><i class="fa fa-home"></i></i></a>
+    </div>
+    <div class="container">
+        <div class="box">
+            {% block content %}
+            <!-- <p>{{succ1}}</p> -->
+            {% if succ1 %}
+            <div class="green h-16 w-40 bg-green-600  text-center ">
+                <p class="text-center mt-10">{{succ1}}</p>   
+             </div>
+            {% endif %}
+            <icon id="home-btn" class="fas fa-user home"></icon>
+            <h2 class="header"> {{name}} Your Orders</h2>
+            <h4 class="header">Recent orders are from top<br>Your order will be ready in 20-30 mins</h4>
+            <table border="2">
+                <tr >
+                    <th class="width">Name</th>
+                    <th  class="width">Image</th>
+                    <th class="width">Quantity</th>
+                    <th class="width">Total price</th>
+                    <th class="width">Restaurant name</th>
+
+
+                </tr>
+                {% for item in data%}
+                    <tr class="height">
+                        <td class="orimg">{{item.food_name}}</td>
+                        <td class="orimg"><img src="/uploads/{{item.image}}" alt="foodimage" width="90%" height="90%"></td>
+                        <td class="orimg">{{item.quantity}}</td>
+                        <td class="orimg">{{item.total_price}}</td>
+                        <td class="orimg">{{item.restorent_name}}</td>
+
+                    </tr>
+                {% endfor %}
+            </table>
+            
+            {% endblock %}
+            
+        </div>
+    </div>
+    <script>
+        let data = document.querySelector('.green');
+            if(data){
+                data.style.padding= '5px';
+                data.style.marginLeft = '500px'
+                data.style.background = 'aqua';
+                data.style.fontweight= '800';
+                data.style.width = '200px';
+                data.style.height = '50px';
+                data.style.border= '2px solid black';
+                data.style.borderRadius = '10px';
+                data.style.textAlign = 'center';
+
+                
+
+                function hideDiv() {
+                    data.style.display = "none";
+
+                }
+
+                setTimeout(hideDiv,5000)
+            }
+        
+    </script>
+</body>
+
+</html>
